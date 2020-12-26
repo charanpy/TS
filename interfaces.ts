@@ -1,5 +1,8 @@
-interface Greet {
-  name:string;
+interface Named{
+ name:string;
+}
+
+interface Greet extends Named {
   age:number;
   greet(phrase:string):void;
 }
@@ -11,6 +14,7 @@ class Person implements Greet{
   greet(phrase:string){
     console.log(phrase);
   }
+  
 }
 
 let user1:Greet;
