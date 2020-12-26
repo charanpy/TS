@@ -1,4 +1,4 @@
-class Department {
+abstract class Department {
   // name:string;
   // private employees:string[]=[];
 
@@ -16,10 +16,7 @@ class Department {
       name,
     };
   }
-  describe(this: Department) {
-    console.log(`Department ${this.name}:${this.id}`);
-    //this.id='10'  =>throws error as it is readonly
-  }
+  abstract describe(this: Department): void;
 
   addEmployees(employee: string) {
     this.employees.push(employee);
@@ -33,6 +30,9 @@ class Department {
 class ItDepartment extends Department {
   constructor(id: string, public admins: string[]) {
     super('It', [], id);
+  }
+  describe(){
+  console.log(this.id);    
   }
 }
 
@@ -53,6 +53,9 @@ class Developer extends Department {
   constructor(id: string, private devs: string[]) {
     super('Devs', ['ch'], 'dev');
     this.list = devs[0];
+  }
+  describe(){
+    console.log("Dev");
   }
   addEmployees(name: string) {
     this.employees.push(name);
