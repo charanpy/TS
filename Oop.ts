@@ -2,12 +2,20 @@ class Department {
   // name:string;
   // private employees:string[]=[];
 
+  //static property
+  static year = 2020;
+
   constructor(
     public name: string,
     protected employees: string[],
     public readonly id: string
   ) {}
-
+  //static method
+  static createEmployee(name: string) {
+    return {
+      name,
+    };
+  }
   describe(this: Department) {
     console.log(`Department ${this.name}:${this.id}`);
     //this.id='10'  =>throws error as it is readonly
@@ -36,10 +44,10 @@ class Developer extends Department {
     if (this.list) {
       return this.list;
     }
-    throw new Error("No dev found");
+    throw new Error('No dev found');
   }
   //setter
-  set mostRecentDev(value:string){
+  set mostRecentDev(value: string) {
     this.addDevelopers(value);
   }
   constructor(id: string, private devs: string[]) {
@@ -63,12 +71,19 @@ class Developer extends Department {
 // account.printEmployeeInfo();
 // console.log(account)
 
+//static method
+const employee = Department.createEmployee('Unknown');
+console.log(employee);
+//static property
+console.log(Department.year);
+
 const dev = new Developer('dev2', []);
+
 dev.addDevelopers('charan');
 dev.getDevelopers();
 dev.addEmployees('Max');
 //getter
 console.log(dev.getRecentDev);
 //setter
-dev.mostRecentDev='jonas';
+dev.mostRecentDev = 'jonas';
 console.log(dev);
