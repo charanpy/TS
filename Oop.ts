@@ -38,7 +38,7 @@ class ItDepartment extends Department {
 
 class Developer extends Department {
   private list: string;
-
+  private static instance:Developer;
   //getter
   get getRecentDev() {
     if (this.list) {
@@ -50,9 +50,18 @@ class Developer extends Department {
   set mostRecentDev(value: string) {
     this.addDevelopers(value);
   }
-  constructor(id: string, private devs: string[]) {
+  //singleton
+  private constructor(id: string, private devs: string[]) {
     super('Devs', ['ch'], 'dev');
     this.list = devs[0];
+  }
+
+  static getInstance(){
+    if(this.instance){
+      return this.instance;
+    }
+    this.instance=new Developer('d2',[]);
+    return this.instance;
   }
   describe(){
     console.log("Dev");
@@ -80,7 +89,9 @@ console.log(employee);
 //static property
 console.log(Department.year);
 
-const dev = new Developer('dev2', []);
+//const dev = new Developer('dev2', []);
+const dev=Developer.getInstance()
+
 
 dev.addDevelopers('charan');
 dev.getDevelopers();
