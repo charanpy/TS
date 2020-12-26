@@ -2,41 +2,58 @@ class Department {
   // name:string;
   // private employees:string[]=[];
 
-  constructor(public name:string,protected employees:string[],public readonly id:string){
-    
-  }
+  constructor(
+    public name: string,
+    protected employees: string[],
+    public readonly id: string
+  ) {}
 
-  describe(this:Department){
-    console.log(`Department ${this.name}:${this.id}`);  
+  describe(this: Department) {
+    console.log(`Department ${this.name}:${this.id}`);
     //this.id='10'  =>throws error as it is readonly
   }
 
-  addEmployees(employee:string){
+  addEmployees(employee: string) {
     this.employees.push(employee);
   }
 
-  printEmployeeInfo(){
+  printEmployeeInfo() {
     console.log(this.employees.length);
   }
 }
 
-class ItDepartment extends Department{
-  constructor(id:string,public admins:string[]){
-    super('It',[],id);
+class ItDepartment extends Department {
+  constructor(id: string, public admins: string[]) {
+    super('It', [], id);
   }
 }
 
-class Developer extends Department{
-  constructor(id:string,private devs:string[]){
-    super('Devs',['ch'],'dev');
+class Developer extends Department {
+  private list: string;
+
+  //getter
+  get getRecentDev() {
+    if (this.list) {
+      return this.list;
+    }
+    throw new Error("No dev found");
   }
-  addEmployees(name:string){
+  //setter
+  set mostRecentDev(value:string){
+    this.addDevelopers(value);
+  }
+  constructor(id: string, private devs: string[]) {
+    super('Devs', ['ch'], 'dev');
+    this.list = devs[0];
+  }
+  addEmployees(name: string) {
     this.employees.push(name);
   }
-  addDevelopers(name:string){
+  addDevelopers(name: string) {
     this.devs.push(name);
+    this.list = name;
   }
-  getDevelopers(){
+  getDevelopers() {
     console.log(this.devs);
   }
 }
@@ -46,8 +63,12 @@ class Developer extends Department{
 // account.printEmployeeInfo();
 // console.log(account)
 
-const dev=new Developer("dev2",[]);
-dev.addDevelopers("charan");
+const dev = new Developer('dev2', []);
+dev.addDevelopers('charan');
 dev.getDevelopers();
-dev.addEmployees("Max")
-console.log(dev)
+dev.addEmployees('Max');
+//getter
+console.log(dev.getRecentDev);
+//setter
+dev.mostRecentDev='jonas';
+console.log(dev);
