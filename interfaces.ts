@@ -2,12 +2,22 @@ type AddType = (a:number,b:number)=>number;
 
 let addType:AddType=(n1:number,n2:number)=>n1+n2;
 
-//interface
+//interface-func
 interface AddInterface{
  (a:number,b:number):number;
 }
 let addInterface:AddInterface=(n1:number,n2:number)=>{
   return n1+n2;
+}
+
+//object
+
+interface Named{
+  name:string,
+  outputName?:string   //?refers to optional
+  greet?():void{
+console.log('hi')
+  }
 }
 
 
