@@ -109,3 +109,12 @@ function moveAnimal(animal:Animal){
   console.log(speed);
 }
 moveAnimal(animalSpeed);
+
+//type casting
+//2-ways
+//ts doesn't analyse html file, we as a dev should explicity mention what we are dng
+
+// const paragraph=<HTMLInputElement>document.getElementById('message-output')!;
+const paragraph=document.getElementById('message-output')! as HTMLInputElement;
+
+paragraph.value='hi';
