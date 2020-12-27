@@ -15,9 +15,7 @@ let addInterface:AddInterface=(n1:number,n2:number)=>{
 interface Named{
   name:string,
   outputName?:string   //?refers to optional
-  greet?():void{
-console.log('hi')
-  }
+  
 }
 
 

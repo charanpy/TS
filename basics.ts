@@ -2,7 +2,7 @@
 let combineVal: Function;
 //Function type -> describes type of arguments and return type
 
-let combineFunc: (a:number,b:number)=> number;
+let combineFunc: (a:number,b:number)=> number
 
 function addHandler(n1:number,n2:number,cb:(num:number)=>void){
   const result=n1+n2;
