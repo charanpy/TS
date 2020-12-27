@@ -23,6 +23,7 @@ type Numeric = number | boolean;
 
 type Universal = Combine & Numeric;
 
+
 // type guards
 function add5(n1: Combine, n2: Combine) {
   if (typeof n1 === 'string' || typeof n2 === 'string') {
@@ -76,3 +77,35 @@ function useVechicle(vehicle:Vehicle){
 }
 useVechicle(v1);
 useVechicle(v2);
+
+//discriminated unions
+interface Bird{
+  type:'bird',
+  flyingSpeed:number;
+}
+interface Horse{
+  type:'horse',
+  runningSpeed:number;
+}
+
+type Animal=Bird|Horse;
+const animalSpeed:Animal={
+  type:'bird',
+  flyingSpeed:100
+};
+
+function moveAnimal(animal:Animal){
+   let speed;
+  switch(animal.type){
+   
+    case 'bird':
+      speed=animal.flyingSpeed;
+      break;
+    case 'horse':
+      speed=animal.runningSpeed;
+      break;
+    
+  }
+  console.log(speed);
+}
+moveAnimal(animalSpeed);
