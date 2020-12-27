@@ -118,3 +118,13 @@ moveAnimal(animalSpeed);
 const paragraph=document.getElementById('message-output')! as HTMLInputElement;
 
 paragraph.value='hi';
+
+//index types
+
+interface ErrorContainer{
+  [prop:string]:string;
+}
+const err:ErrorContainer={
+  email:'Not a valid email',
+  username:'not valid'
+}
