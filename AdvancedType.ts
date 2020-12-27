@@ -128,3 +128,14 @@ const err:ErrorContainer={
   email:'Not a valid email',
   username:'not valid'
 }
+
+//function overloads
+
+function add6(n1:number,n2:number):number
+function add6(n1:string,n2:string):string
+function add6(n1: Combine, n2: Combine) {
+  if (typeof n1 === 'string' || typeof n2 === 'string') {
+    return n1.toString() + n2.toString();
+  }
+  return n1 + n2;
+}
