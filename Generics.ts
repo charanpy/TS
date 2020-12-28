@@ -44,10 +44,14 @@ class DataStorage<T>{
   private data :T[]=[]
 
   addItem(item:T){
+    
     this.data.push(item);
   }
 
   removeItem(item:T){
+    if(this.data.indexOf(item) === -1){
+      return;
+    }
     this.data.splice(this.data.indexOf(item),1)
   }
 
@@ -63,3 +67,21 @@ const noStorage = new DataStorage<number>();
 noStorage.addItem(2);
 
 console.log(textStorage,noStorage);
+
+// generic utility types
+interface Course{
+  title:string,
+  des:string, 
+  complete:Date
+}
+
+function create(title:string,des:string,complete:Date):Course{
+  let courseGoal:Partial<Course> ={};
+  courseGoal.title=title;
+  courseGoal.des=des;
+  courseGoal.complete=complete;
+  return courseGoal as Course
+}
+
+const named:Readonly<string[]> =['Max','Spors'];
+//named.push(); //err 
