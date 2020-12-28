@@ -30,3 +30,13 @@ function count<T extends Len>(el:T):[T,string]{
   return [el,des]
 }
 console.log(count('Hi'));
+
+//key constr
+
+function extractAndConvert<T extends object,U extends keyof T>(obj:T,key:U){
+  return obj[key]
+}
+console.log(extractAndConvert(
+  {name:'cj'},"name"
+))
+
