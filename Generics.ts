@@ -9,3 +9,24 @@ const promise:Promise<string> = new Promise((resolve,reject)=>{
   },2000);
 });
 
+function merge<T extends object,U extends object>(objA:T,objB:U){
+  return Object.assign(objA,objB);
+}
+const mergeObj=merge({name:'Ch',hobbies:['code']},{name:'Max',hobbies:['cric']})
+console.log(mergeObj)
+
+interface Lengthy{
+  length:number
+}
+
+type Len={
+  length:number
+}
+function count<T extends Len>(el:T):[T,string]{
+  let des='Got no val';
+  if(el.length > 0){
+    des='Got'+el.length;
+  }
+  return [el,des]
+}
+console.log(count('Hi'));
